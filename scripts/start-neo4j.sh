@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-BOLT_PORT=7687
+if [ ! -f ../.env ]
+then
+  export $(cat .env | xargs)
+fi
 
 if [ ! -d "neo4j/data/databases/graph.db" ]; then
     echo "Neo4j not installed correctly, run ./scripts/install_neo4j"
@@ -14,7 +17,7 @@ else
 
     for i in {1..120};
         do
-            nc -z 127.0.0.1 $BOLT_PORT
+            nc -z $(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}') $BOLT_PORT
             is_up=$?
             if [ $is_up -eq 0 ]; then
                 echo

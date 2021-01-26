@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "reinstall": "sudo rm neo4j -r && yarn install",
     "preinstall": "sudo sh ./scripts/install-neo4j.sh",
     "prestart": "sudo sh ./scripts/start-neo4j.sh",
     "start": "nodemon ./src/gateway.js --exec babel-node -e js",
