@@ -15,8 +15,6 @@
     "test": "nyc --reporter=lcov ava --fail-fast test/integration/gateway.test.js"
   },
   "devDependencies": {
-    "@apollo/federation": "^0.20.7",
-    "@apollo/gateway": "^0.14.1",
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
     "@babel/node": "^7.0.0",
@@ -25,10 +23,10 @@
     "@babel/plugin-transform-runtime": "^7.0.0",
     "@babel/preset-env": "^7.10.4",
     "@graphql-inspector/core": "^2.3.0",
+    "@apollo/federation": "^0.20.7",
     "apollo-cache-inmemory": "^1.6.3",
     "apollo-client": "^2.6.10",
     "apollo-link-http": "^1.5.16",
-    "apollo-server": "^2.19.0",
     "apollo-server-express": "^2.19.0",
     "ava": "^2.2.0",
     "body-parser": "^1.18.3",
@@ -44,7 +42,9 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
-    "neo4j-graphql-js": "^2.19.1"
+    "neo4j-graphql-js": "^2.19.1",
+    "@apollo/gateway": "^0.14.1",
+    "apollo-server": "^2.19.0"
   },
   "ava": {
     "require": [
