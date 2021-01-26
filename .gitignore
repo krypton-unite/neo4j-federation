@@ -4,3 +4,4 @@ node_modules
 neo4j
 .nyc_output
 coverage
+.download_cache
