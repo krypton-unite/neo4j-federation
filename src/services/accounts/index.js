@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server';
 import { buildFederatedSchema } from '@apollo/federation';
-import { neo4jgraphql, augmentTypeDefs, cypher } from '../../../../src';
+import { neo4jgraphql, augmentTypeDefs, cypher } from 'neo4j-graphql-js';
 
 // Example: without schema augmentation
 export const accountsSchema = buildFederatedSchema([
@@ -29,7 +29,7 @@ export const accountsSchema = buildFederatedSchema([
       }
     `,
       {
-        isFederated: true
+        isFederated: true,
       }
     ),
     resolvers: {
@@ -39,16 +39,16 @@ export const accountsSchema = buildFederatedSchema([
         },
         async Account(object, params, context, resolveInfo) {
           return await neo4jgraphql(object, params, context, resolveInfo);
-        }
+        },
       },
       Account: {
         // Base type reference resolver
         async __resolveReference(object, context, resolveInfo) {
           return await neo4jgraphql(object, {}, context, resolveInfo);
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  },
 ]);
 
 export const accounts = [
@@ -56,12 +56,12 @@ export const accounts = [
     id: '1',
     name: 'Ada Lovelace',
     birthDate: '1815-12-10',
-    username: '@ada'
+    username: '@ada',
   },
   {
     id: '2',
     name: 'Alan Turing',
     birthDate: '1912-06-23',
-    username: '@complete'
-  }
+    username: '@complete',
+  },
 ];

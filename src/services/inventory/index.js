@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server';
 import { buildFederatedSchema } from '@apollo/federation';
-import { makeAugmentedSchema, cypher } from '../../../../src';
+import { makeAugmentedSchema, cypher } from 'neo4j-graphql-js';
 
 export const inventorySchema = buildFederatedSchema([
   makeAugmentedSchema({
@@ -58,7 +58,7 @@ export const inventorySchema = buildFederatedSchema([
         //     ...data
         //   };
         // },
-      }
+      },
       // Generated
       // Product: {
       // async __resolveReference(object, context, resolveInfo) {
@@ -71,14 +71,14 @@ export const inventorySchema = buildFederatedSchema([
       // }
     },
     config: {
-      isFederated: true
+      isFederated: true,
       // debug: true
-    }
-  })
+    },
+  }),
 ]);
 
 export const inventory = [
   { upc: '1', inStock: true },
   { upc: '2', inStock: false },
-  { upc: '3', inStock: true }
+  { upc: '3', inStock: true },
 ];

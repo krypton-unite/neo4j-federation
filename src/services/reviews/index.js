@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server';
 import { buildFederatedSchema } from '@apollo/federation';
-import { makeAugmentedSchema, neo4jgraphql, cypher } from '../../../../src';
+import { makeAugmentedSchema, neo4jgraphql, cypher } from 'neo4j-graphql-js';
 import { seedData } from '../../seed-data';
 
 export const reviewsSchema = buildFederatedSchema([
@@ -175,7 +175,7 @@ export const reviewsSchema = buildFederatedSchema([
         async MergeSeedData(object, params, context, resolveInfo) {
           const data = seedData.data['Review'];
           return await neo4jgraphql(object, { data }, context, resolveInfo);
-        }
+        },
       },
       Account: {
         // Generated
@@ -196,13 +196,13 @@ export const reviewsSchema = buildFederatedSchema([
         //     ...data
         //   };
         // }
-      }
+      },
     },
     config: {
-      isFederated: true
+      isFederated: true,
       // debug: true
-    }
-  })
+    },
+  }),
 ]);
 
 export const reviews = [
@@ -210,24 +210,24 @@ export const reviews = [
     id: '1',
     authorID: '1',
     product: { upc: '1' },
-    body: 'Love it!'
+    body: 'Love it!',
   },
   {
     id: '2',
     authorID: '1',
     product: { upc: '2' },
-    body: 'Too expensive.'
+    body: 'Too expensive.',
   },
   {
     id: '3',
     authorID: '2',
     product: { upc: '3' },
-    body: 'Could be better.'
+    body: 'Could be better.',
   },
   {
     id: '4',
     authorID: '2',
     product: { upc: '1' },
-    body: 'Prefer something else.'
-  }
+    body: 'Prefer something else.',
+  },
 ];

@@ -5,9 +5,12 @@ import { inventorySchema } from './services/inventory';
 import { productsSchema } from './services/products';
 import { reviewsSchema } from './services/reviews';
 import neo4j from 'neo4j-driver';
+import dotenv from 'dotenv';
 
 // The schema and seed data are based on the Apollo Federation demo
 // See: https://github.com/apollographql/federation-demo
+
+dotenv.config();
 
 const driver = neo4j.driver(
   process.env.NEO4J_URI || 'bolt://localhost:7687',
@@ -25,10 +28,10 @@ const accountsService = new ApolloServer({
       driver,
       req,
       cypherParams: {
-        userId: 'user-id'
-      }
+        userId: 'user-id',
+      },
     };
-  }
+  },
 });
 accountsService.listen({ port: 4001 }).then(({ url }) => {
   console.log(`🚀 Accounts ready at ${url}`);
@@ -42,10 +45,10 @@ const reviewsService = new ApolloServer({
       driver,
       req,
       cypherParams: {
-        userId: 'user-id'
-      }
+        userId: 'user-id',
+      },
     };
-  }
+  },
 });
 reviewsService.listen({ port: 4002 }).then(({ url }) => {
   console.log(`🚀 Reviews ready at ${url}`);
@@ -59,10 +62,10 @@ const productsService = new ApolloServer({
       driver,
       req,
       cypherParams: {
-        userId: 'user-id'
-      }
+        userId: 'user-id',
+      },
     };
-  }
+  },
 });
 productsService.listen({ port: 4003 }).then(({ url }) => {
   console.log(`🚀 Products ready at ${url}`);
@@ -76,10 +79,10 @@ const inventoryService = new ApolloServer({
       driver,
       req,
       cypherParams: {
-        userId: 'user-id'
-      }
+        userId: 'user-id',
+      },
     };
-  }
+  },
 });
 inventoryService.listen({ port: 4004 }).then(({ url }) => {
   console.log(`🚀 Inventory ready at ${url}`);
@@ -90,10 +93,10 @@ const gateway = new ApolloGateway({
     { name: 'accounts', url: 'http://localhost:4001/graphql' },
     { name: 'reviews', url: 'http://localhost:4002/graphql' },
     { name: 'products', url: 'http://localhost:4003/graphql' },
-    { name: 'inventory', url: 'http://localhost:4004/graphql' }
+    { name: 'inventory', url: 'http://localhost:4004/graphql' },
   ],
   // Experimental: Enabling this enables the query plan view in Playground.
-  __exposeQueryPlanExperimental: true
+  __exposeQueryPlanExperimental: true,
 });
 
 (async () => {
@@ -106,7 +109,7 @@ const gateway = new ApolloGateway({
     engine: false,
 
     // Subscriptions are unsupported but planned for a future Gateway version.
-    subscriptions: false
+    subscriptions: false,
   });
 
   server.listen({ port: 4000 }).then(({ url }) => {
