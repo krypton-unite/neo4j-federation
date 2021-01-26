@@ -1,0 +1,9 @@
+{
+  "name": "neo4j-federation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "neo4j-graphql-js": "^2.19.1"
+  }
+}
