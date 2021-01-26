@@ -5,5 +5,8 @@
   "license": "MIT",
   "dependencies": {
     "neo4j-graphql-js": "^2.19.1"
+  },
+  "scripts": {
+    "preinstall": ". ./scripts/install-neo4j.sh"
   }
 }
