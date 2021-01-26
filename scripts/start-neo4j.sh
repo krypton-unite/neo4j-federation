@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
-if [ ! -f ../.env ]
-then
-  export $(cat .env | xargs)
-fi
+. $(dirname $0)/load_env_vars.sh
+load_env_vars
 
 if [ ! -d "neo4j/data/databases/graph.db" ]; then
     echo "Neo4j not installed correctly, run ./scripts/install_neo4j"

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-BOLT_PORT=7687
+. $(dirname $0)/load_env_vars.sh
+load_env_vars
 
 ./neo4j/bin/neo4j stop
 rm -r neo4j/data/databases/graph.db

@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
-HTTP_PORT=3000
+. $(dirname $0)/load_env_vars.sh
+load_env_vars
 
 echo "Waiting up to 2 minutes for graphql http port ($HTTP_PORT)"
 
 for i in {1..120};
     do
-        nc -z localhost $HTTP_PORT
+        nc -z $(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}') $HTTP_PORT
         is_up=$?
         if [ $is_up -eq 0 ]; then
             echo
