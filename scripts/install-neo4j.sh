@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 yes | sudo apt-get install fdupes unzip
 

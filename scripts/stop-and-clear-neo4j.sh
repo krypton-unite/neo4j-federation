@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 . $(dirname $0)/load_env_vars.sh
 load_env_vars
