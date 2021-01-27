@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 load_env_vars(){
     if [ ! -f ../.env ]

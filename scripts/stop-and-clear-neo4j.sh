@@ -9,9 +9,11 @@ rm -r neo4j/data/databases/graph.db
 
 echo "Waiting up to 2 minutes for neo4j bolt port ($BOLT_PORT)"
 
+. $(dirname $0)/helpers/get_local_host.sh
+get_local_host
 for i in {1..120};
     do
-        nc -z 127.0.0.1 $BOLT_PORT
+        nc -z $localhost $BOLT_PORT
         is_up=$?
         if [ $is_up -eq 0 ]; then
             echo

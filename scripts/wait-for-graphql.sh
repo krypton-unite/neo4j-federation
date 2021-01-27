@@ -5,9 +5,11 @@ load_env_vars
 
 echo "Waiting up to 2 minutes for graphql http port ($HTTP_PORT)"
 
+. $(dirname $0)/helpers/get_local_host.sh
+get_local_host
 for i in {1..120};
     do
-        nc -z $(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}') $HTTP_PORT
+        nc -z $localhost $HTTP_PORT
         is_up=$?
         if [ $is_up -eq 0 ]; then
             echo
