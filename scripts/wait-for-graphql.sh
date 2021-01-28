@@ -1,24 +1,13 @@
 #!/bin/bash
 
 source=${BASH_SOURCE[0]}
-. $(dirname $source)/helpers/get_source_data.sh $source
+. $(dirname $source)/helpers/get_source_dir.sh
 
-. $this_dir/load_env_vars.sh
-load_env_vars
+wait-for-graphql(){
+    local this_directory=$(get_source_dir $source)
 
-echo "Waiting up to 2 minutes for graphql http port ($HTTP_PORT)"
-
-. $this_dir/helpers/get_local_host.sh
-for i in {1..120};
-    do
-        nc -z "$(get_local_host)" $HTTP_PORT
-        is_up=$?
-        if [ $is_up -eq 0 ]; then
-            echo
-            echo "Successfully started, graphql http available on $HTTP_PORT"
-            break
-        fi
-        sleep 1
-        echo -n "."
-done
-echo
+    . $this_directory/helpers/get_local_host.sh
+    localhost=$(get_local_host)
+    dash $this_directory/execute_wait.sh $this_directory $localhost
+}
+wait-for-graphql

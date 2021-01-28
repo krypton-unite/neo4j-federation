@@ -6,8 +6,10 @@
   "scripts": {
     "reinstall": "sudo rm neo4j -r && yarn install",
     "preinstall": "sudo bash ./scripts/install-neo4j.sh",
-    "prestart": "sudo bash ./scripts/start-neo4j.sh",
+    "prestart": "yarn neo4j:start",
     "start": "nodemon ./src/gateway.js --exec babel-node -e js",
+    "neo4j:start": "sudo bash ./scripts/start-neo4j.sh",
+    "neo4j:stop": "sudo bash ./scripts/stop-and-clear-neo4j.sh",
     "precommit": "lint-staged",
     "build": "babel src --presets @babel/preset-env --out-dir dist",
     "build-with-sourcemaps": "babel src --presets @babel/preset-env --out-dir dist --source-maps",

@@ -1,13 +1,13 @@
 #!/bin/bash
 
 source=${BASH_SOURCE[0]}
-. $(dirname $source)/get_source_data.sh $source
-
-. $this_dir/cache.sh
-. $this_dir/download_files.sh
-. $this_dir/delete_duplicates.sh
 
 cached_download(){
+    . $(dirname $source)/get_source_dir.sh
+    local this_directory=$(get_source_dir $source)
+    . $this_directory/cache.sh
+    . $this_directory/download_files.sh
+    . $this_directory/delete_duplicates.sh
     # $1 download_info
     # $2 cache_folder
     local cache="$1"   # Save first argument in a variable
