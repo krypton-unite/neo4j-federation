@@ -8,6 +8,6 @@ start-neo4j(){
 
     . $this_directory/helpers/get_local_host.sh
     localhost=$(get_local_host)
-    dash $this_directory/execute_start.sh $this_directory $localhost
+    dash $this_directory/helpers/execute_start.sh $this_directory $localhost
 }
 start-neo4j

@@ -4,7 +4,7 @@ source=${BASH_SOURCE[0]}
 . $(dirname $source)/helpers/get_source_dir.sh
 
 install-neo4j(){
-  this_directory=$(get_source_dir $source)
+  local this_directory=$(get_source_dir $source)
 
   yes | sudo apt-get install fdupes unzip
 
