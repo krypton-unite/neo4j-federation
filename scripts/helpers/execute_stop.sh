@@ -2,7 +2,6 @@
 
 this_directory=$1
 localhost=$2
-echo $localhost
 
 . $this_directory/helpers/load_env_vars.sh
 load_env_vars
