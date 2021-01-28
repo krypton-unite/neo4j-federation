@@ -15,9 +15,10 @@ else
 
     . $(dirname $0)/helpers/get_local_host.sh
     get_local_host
+    echo "Endpoint is $localhost:$BOLT_PORT"
     for i in {1..120};
         do
-            nc -z $localhost $BOLT_PORT
+            nc -z $localhost $BOLT_PORT -w 1
             is_up=$?
             if [ $is_up -eq 0 ]; then
                 echo
