@@ -1,5 +1,8 @@
 #!/bin/bash
+source=${BASH_SOURCE[0]}
+. $(dirname $source)/get_source_data.sh $source
 
 get_local_host(){
-    localhost=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}')
+    localhost=$(perl $this_dir/regex.pl "$(cat /etc/resolv.conf)")
 }
+# echo "$(get_local_host)"

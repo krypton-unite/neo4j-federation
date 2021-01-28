@@ -1,9 +1,11 @@
 #!/bin/bash
 
-this_path=$(dirname  $0)/helpers
-. $this_path/cache.sh
-. $this_path/download_files.sh
-. $this_path/delete_duplicates.sh
+source=${BASH_SOURCE[0]}
+. $(dirname $source)/get_source_data.sh $source
+
+. $this_dir/cache.sh
+. $this_dir/download_files.sh
+. $this_dir/delete_duplicates.sh
 
 cached_download(){
     # $1 download_info

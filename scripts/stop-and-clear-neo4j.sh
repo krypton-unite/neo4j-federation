@@ -1,6 +1,9 @@
 #!/bin/bash
 
-. $(dirname $0)/load_env_vars.sh
+source=${BASH_SOURCE[0]}
+. $(dirname $source)/helpers/get_source_data.sh $source
+
+. $this_dir/load_env_vars.sh
 load_env_vars
 
 ./neo4j/bin/neo4j stop
@@ -10,10 +13,9 @@ rm -r neo4j/data/databases/graph.db
 echo "Waiting up to 2 minutes for neo4j bolt port ($BOLT_PORT)"
 
 . $(dirname $0)/helpers/get_local_host.sh
-get_local_host
 for i in {1..120};
     do
-        nc -z $localhost $BOLT_PORT
+        nc -z "$(get_local_host)" $BOLT_PORT
         is_up=$?
         if [ $is_up -eq 0 ]; then
             echo

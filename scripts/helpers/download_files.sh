@@ -1,7 +1,8 @@
 #!/bin/bash
 
-this_path=$(dirname  $0)/helpers
-. $this_path/get_number_of_logical_processors.sh
+source=${BASH_SOURCE[0]}
+. $(dirname $source)/get_source_data.sh $source
+. $this_dir/get_number_of_logical_processors.sh
 
 download_files(){
     local cache="$1"    # Save first argument in a variable

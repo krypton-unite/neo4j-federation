@@ -1,9 +1,12 @@
 #!/bin/bash
 
+source=${BASH_SOURCE[0]}
+. $(dirname $source)/helpers/get_source_data.sh $source
+
 yes | sudo apt-get install fdupes unzip
 
 cache=.download_cache
-helpers_path=$(dirname $0)/helpers
+helpers_path=$this_dir/helpers
 . $helpers_path/load_env_vars.sh
 load_env_vars
 

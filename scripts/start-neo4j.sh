@@ -1,6 +1,9 @@
 #!/bin/bash
 
-. $(dirname $0)/helpers/load_env_vars.sh
+source=${BASH_SOURCE[0]}
+. $(dirname $source)/helpers/get_source_data.sh $source
+
+. $this_dir/helpers/load_env_vars.sh
 load_env_vars
 
 if [ ! -d "neo4j/data/databases/graph.db" ]; then
@@ -13,8 +16,9 @@ else
     dbms_memory_heap_initial_size="2048m" dbms_memory_heap_max_size="2048m" ./neo4j/bin/neo4j start
     echo "Waiting up to 2 minutes for neo4j bolt port ($BOLT_PORT)"
 
-    . $(dirname $0)/helpers/get_local_host.sh
+    . $this_dir/helpers/get_local_host.sh
     get_local_host
+    echo "Localhost is $localhost"
     for i in {1..120};
         do
             nc -z $localhost $BOLT_PORT

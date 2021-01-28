@@ -1,32 +1,13 @@
 {
-  "version": "0.2.0",
   "configurations": [
     {
-      "type": "node",
+      "type": "perl",
       "request": "launch",
-      "name": "Launch debug via NPM",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run-script", "debug"],
-      "port": 9229,
-      "stopOnEntry": true
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Movie-typedefs debug",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run-script", "debug-typedefs"],
-      "port": 9229,
-      "stopOnEntry": true
-    },
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "interface errors",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run-script", "debug-interface"],
-      "port": 9229,
-      "stopOnEntry": true
+      "name": "Launch perl debug",
+      "program": "${workspaceFolder}/${relativeFile}",
+      "args": [
+        "### Hetzner Online GmbH installimage # nameserver config nameserver 213.133.99.99 nameserver 213.133.98.98 nameserver 213.133.100.100"
+      ]
     }
   ]
 }
